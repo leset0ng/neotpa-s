@@ -1,7 +1,9 @@
 package ihh.neotpa;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +35,9 @@ public class TPAManager {
     public static final String TPCANCEL_SUCCESS_TO = "commands.neotpa.tpcancel.success_to";
     public static final String TPCANCEL_FAILURE_NO_TPA = "commands.neotpa.tpcancel.failure_no_tpa";
     public static final String TPCANCEL_FAILURE_NO_TPA_FROM_PLAYER = "commands.neotpa.tpcancel.failure_no_tpa_from_player";
+    public static final String CLICK_TO_ACCEPT = "commands.neotpa.chat.click_to_accept";
+    public static final String CLICK_TO_DENY = "commands.neotpa.chat.click_to_deny";
+    public static final String CLICK_TO_CANCEL = "commands.neotpa.chat.click_to_cancel";
     private static final LinkedList<TPARequest> REQUESTS = new LinkedList<>();
 
     public static void tpa(ServerPlayer from, ServerPlayer to) {
@@ -40,9 +45,9 @@ public class TPAManager {
         if (!REQUESTS.contains(request)) {
             REQUESTS.addFirst(request);
             from.sendSystemMessage(Localization.translate(TPA_SENT_0, ChatFormatting.GOLD, nameColored(to)));
-            from.sendSystemMessage(Localization.translate(TPA_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
+            from.sendSystemMessage(Localization.translate(TPA_SENT_1, ChatFormatting.GOLD, clickableCommand("/tpcancel", ChatFormatting.RED, CLICK_TO_CANCEL)));
             to.sendSystemMessage(Localization.translate(TPA_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
-            to.sendSystemMessage(Localization.translate(TPA_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
+            to.sendSystemMessage(Localization.translate(TPA_RECEIVED_1, ChatFormatting.GOLD, clickableCommand("/tpaccept", ChatFormatting.GREEN, CLICK_TO_ACCEPT), clickableCommand("/tpdeny", ChatFormatting.RED, CLICK_TO_DENY)));
         } else {
             from.sendSystemMessage(Localization.translate(TPA_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
         }
@@ -53,9 +58,9 @@ public class TPAManager {
         if (!REQUESTS.contains(request)) {
             REQUESTS.addFirst(request);
             from.sendSystemMessage(Localization.translate(TPAHERE_SENT_0, ChatFormatting.GOLD, nameColored(to)));
-            from.sendSystemMessage(Localization.translate(TPAHERE_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
+            from.sendSystemMessage(Localization.translate(TPAHERE_SENT_1, ChatFormatting.GOLD, clickableCommand("/tpcancel", ChatFormatting.RED, CLICK_TO_CANCEL)));
             to.sendSystemMessage(Localization.translate(TPAHERE_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
-            to.sendSystemMessage(Localization.translate(TPAHERE_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
+            to.sendSystemMessage(Localization.translate(TPAHERE_RECEIVED_1, ChatFormatting.GOLD, clickableCommand("/tpaccept", ChatFormatting.GREEN, CLICK_TO_ACCEPT), clickableCommand("/tpdeny", ChatFormatting.RED, CLICK_TO_DENY)));
         } else {
             from.sendSystemMessage(Localization.translate(TPAHERE_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
         }
@@ -117,6 +122,14 @@ public class TPAManager {
 
     private static MutableComponent literalColored(String text, ChatFormatting color) {
         return Component.literal(text).withStyle(color);
+    }
+
+    private static MutableComponent clickableCommand(String command, ChatFormatting color, String hoverKey) {
+        return Component.literal(command)
+                .withStyle(color)
+                .withStyle(style -> style
+                        .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command))
+                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Localization.raw(hoverKey))));
     }
     
     private static MutableComponent nameColored(Player player) {

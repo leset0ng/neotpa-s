@@ -66,6 +66,13 @@ public class Localization {
         return result;
     }
 
+    /**
+     * Resolves {@code key} to a plain unstyled component, for use in e.g. hover text.
+     */
+    public static Component raw(String key) {
+        return Component.literal(getOrDefault(key));
+    }
+
     private static String getOrDefault(String key) {
         String code = languageCode();
         String value = language(code).get(key);

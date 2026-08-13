@@ -21,5 +21,8 @@
   "commands.neotpa.tpcancel.success_from": "你已取消发送给 %s 的传送请求！",
   "commands.neotpa.tpcancel.success_to": "%s 已取消向你发送的传送请求！",
   "commands.neotpa.tpcancel.failure_no_tpa": "你没有任何发出的传送请求！",
-  "commands.neotpa.tpcancel.failure_no_tpa_from_player": "你没有向 %s 发出传送请求！"
+  "commands.neotpa.tpcancel.failure_no_tpa_from_player": "你没有向 %s 发出传送请求！",
+  "commands.neotpa.chat.click_to_accept": "点击接受",
+  "commands.neotpa.chat.click_to_deny": "点击拒绝",
+  "commands.neotpa.chat.click_to_cancel": "点击取消"
 }

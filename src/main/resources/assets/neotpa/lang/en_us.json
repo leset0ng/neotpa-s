@@ -21,5 +21,8 @@
   "commands.neotpa.tpcancel.success_from": "You have cancelled your teleportation request to %s!",
   "commands.neotpa.tpcancel.success_to": "%s has cancelled their teleportation request to you!",
   "commands.neotpa.tpcancel.failure_no_tpa": "You do not have any outgoing teleportation requests!",
-  "commands.neotpa.tpcancel.failure_no_tpa_from_player": "You do not have any outgoing teleportation requests to %s!"
+  "commands.neotpa.tpcancel.failure_no_tpa_from_player": "You do not have any outgoing teleportation requests to %s!",
+  "commands.neotpa.chat.click_to_accept": "Click to accept",
+  "commands.neotpa.chat.click_to_deny": "Click to deny",
+  "commands.neotpa.chat.click_to_cancel": "Click to cancel"
 }
