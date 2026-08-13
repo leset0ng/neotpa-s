@@ -12,6 +12,19 @@ If at any point you are missing libraries in your IDE, or you've run into proble
 run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
 {this does not affect your code} and then start the process again.
 
+Server-side Localization
+============
+
+All messages are translated on the server, so clients do not need this mod (or its
+language files) installed. The language is set in `config/neotpa-server.toml`:
+
+```toml
+language = "zh_cn" # e.g. "en_us", "zh_cn"; empty uses the server's JVM locale
+```
+
+Missing keys always fall back to `en_us`. To add a language, drop a file named
+`assets/neotpa/lang/<code>.json` into the mod jar next to the existing ones.
+
 Mapping Names:
 ============
 By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 

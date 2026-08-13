@@ -39,12 +39,12 @@ public class TPAManager {
         TPARequest.Normal request = new TPARequest.Normal(from, to);
         if (!REQUESTS.contains(request)) {
             REQUESTS.addFirst(request);
-            from.sendSystemMessage(translatableColored(TPA_SENT_0, ChatFormatting.GOLD, nameColored(to)));
-            from.sendSystemMessage(translatableColored(TPA_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
-            to.sendSystemMessage(translatableColored(TPA_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
-            to.sendSystemMessage(translatableColored(TPA_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
+            from.sendSystemMessage(Localization.translate(TPA_SENT_0, ChatFormatting.GOLD, nameColored(to)));
+            from.sendSystemMessage(Localization.translate(TPA_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
+            to.sendSystemMessage(Localization.translate(TPA_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
+            to.sendSystemMessage(Localization.translate(TPA_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
         } else {
-            from.sendSystemMessage(translatableColored(TPA_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
+            from.sendSystemMessage(Localization.translate(TPA_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
         }
     }
 
@@ -52,12 +52,12 @@ public class TPAManager {
         TPARequest.Here request = new TPARequest.Here(from, to);
         if (!REQUESTS.contains(request)) {
             REQUESTS.addFirst(request);
-            from.sendSystemMessage(translatableColored(TPAHERE_SENT_0, ChatFormatting.GOLD, nameColored(to)));
-            from.sendSystemMessage(translatableColored(TPAHERE_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
-            to.sendSystemMessage(translatableColored(TPAHERE_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
-            to.sendSystemMessage(translatableColored(TPAHERE_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
+            from.sendSystemMessage(Localization.translate(TPAHERE_SENT_0, ChatFormatting.GOLD, nameColored(to)));
+            from.sendSystemMessage(Localization.translate(TPAHERE_SENT_1, ChatFormatting.GOLD, literalColored("/tpcancel", ChatFormatting.RED)));
+            to.sendSystemMessage(Localization.translate(TPAHERE_RECEIVED_0, ChatFormatting.GOLD, nameColored(from)));
+            to.sendSystemMessage(Localization.translate(TPAHERE_RECEIVED_1, ChatFormatting.GOLD, literalColored("/tpaccept", ChatFormatting.GREEN), literalColored("/tpdeny", ChatFormatting.RED)));
         } else {
-            from.sendSystemMessage(translatableColored(TPAHERE_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
+            from.sendSystemMessage(Localization.translate(TPAHERE_ALREADY_SENT, ChatFormatting.GOLD, nameColored(to)));
         }
     }
 
@@ -67,15 +67,15 @@ public class TPAManager {
             if (request.getSender().level() == request.getReceiver().level()) {
                 request.execute();
                 REQUESTS.remove(request);
-                request.getSender().sendSystemMessage(translatableColored(TPACCEPT_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
-                request.getReceiver().sendSystemMessage(translatableColored(TPACCEPT_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
+                request.getSender().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
+                request.getReceiver().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
             } else {
-                to.sendSystemMessage(translatableColored(TPACCEPT_FAILURE_DIMENSION, ChatFormatting.GOLD, nameColored(request.getSender())));
+                to.sendSystemMessage(Localization.translate(TPACCEPT_FAILURE_DIMENSION, ChatFormatting.GOLD, nameColored(request.getSender())));
             }
         } else if (from != null) {
-            to.sendSystemMessage(translatableColored(TPACCEPT_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(from)));
+            to.sendSystemMessage(Localization.translate(TPACCEPT_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(from)));
         } else {
-            to.sendSystemMessage(translatableColored(TPACCEPT_FAILURE_NO_TPA, ChatFormatting.GOLD));
+            to.sendSystemMessage(Localization.translate(TPACCEPT_FAILURE_NO_TPA, ChatFormatting.GOLD));
         }
     }
 
@@ -83,12 +83,12 @@ public class TPAManager {
         TPARequest request = getRequest(from, to);
         if (request != null) {
             REQUESTS.remove(request);
-            request.getSender().sendSystemMessage(translatableColored(TPDENY_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
-            request.getReceiver().sendSystemMessage(translatableColored(TPDENY_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
+            request.getSender().sendSystemMessage(Localization.translate(TPDENY_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
+            request.getReceiver().sendSystemMessage(Localization.translate(TPDENY_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
         } else if (from != null) {
-            to.sendSystemMessage(translatableColored(TPDENY_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(from)));
+            to.sendSystemMessage(Localization.translate(TPDENY_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(from)));
         } else {
-            to.sendSystemMessage(translatableColored(TPDENY_FAILURE_NO_TPA, ChatFormatting.GOLD));
+            to.sendSystemMessage(Localization.translate(TPDENY_FAILURE_NO_TPA, ChatFormatting.GOLD));
         }
     }
 
@@ -96,12 +96,12 @@ public class TPAManager {
         TPARequest request = getRequest(from, to);
         if (request != null) {
             REQUESTS.remove(request);
-            request.getSender().sendSystemMessage(translatableColored(TPCANCEL_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
-            request.getReceiver().sendSystemMessage(translatableColored(TPCANCEL_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
+            request.getSender().sendSystemMessage(Localization.translate(TPCANCEL_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
+            request.getReceiver().sendSystemMessage(Localization.translate(TPCANCEL_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
         } else if (to != null) {
-            from.sendSystemMessage(translatableColored(TPCANCEL_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(to)));
+            from.sendSystemMessage(Localization.translate(TPCANCEL_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(to)));
         } else {
-            from.sendSystemMessage(translatableColored(TPCANCEL_FAILURE_NO_TPA, ChatFormatting.GOLD));
+            from.sendSystemMessage(Localization.translate(TPCANCEL_FAILURE_NO_TPA, ChatFormatting.GOLD));
         }
     }
 
@@ -117,10 +117,6 @@ public class TPAManager {
 
     private static MutableComponent literalColored(String text, ChatFormatting color) {
         return Component.literal(text).withStyle(color);
-    }
-
-    private static MutableComponent translatableColored(String text, ChatFormatting color, Object... args) {
-        return Component.translatable(text, args).withStyle(color);
     }
     
     private static MutableComponent nameColored(Player player) {
