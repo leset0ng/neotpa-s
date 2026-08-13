@@ -24,7 +24,6 @@ public class TPAManager {
     public static final String TPAHERE_ALREADY_SENT = "commands.neotpa.tpahere.already_sent";
     public static final String TPACCEPT_SUCCESS_FROM = "commands.neotpa.tpaccept.success_from";
     public static final String TPACCEPT_SUCCESS_TO = "commands.neotpa.tpaccept.success_to";
-    public static final String TPACCEPT_FAILURE_DIMENSION = "commands.neotpa.tpaccept.failure_dimension";
     public static final String TPACCEPT_FAILURE_NO_TPA = "commands.neotpa.tpaccept.failure_no_tpa";
     public static final String TPACCEPT_FAILURE_NO_TPA_FROM_PLAYER = "commands.neotpa.tpaccept.failure_no_tpa_from_player";
     public static final String TPDENY_SUCCESS_FROM = "commands.neotpa.tpdeny.success_from";
@@ -69,14 +68,10 @@ public class TPAManager {
     public static void tpAccept(ServerPlayer to, @Nullable ServerPlayer from) {
         TPARequest request = getRequest(from, to);
         if (request != null) {
-            if (request.getSender().level() == request.getReceiver().level()) {
-                request.execute();
-                REQUESTS.remove(request);
-                request.getSender().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
-                request.getReceiver().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
-            } else {
-                to.sendSystemMessage(Localization.translate(TPACCEPT_FAILURE_DIMENSION, ChatFormatting.GOLD, nameColored(request.getSender())));
-            }
+            request.execute();
+            REQUESTS.remove(request);
+            request.getSender().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_FROM, ChatFormatting.GOLD, nameColored(request.getReceiver())));
+            request.getReceiver().sendSystemMessage(Localization.translate(TPACCEPT_SUCCESS_TO, ChatFormatting.GOLD, nameColored(request.getSender())));
         } else if (from != null) {
             to.sendSystemMessage(Localization.translate(TPACCEPT_FAILURE_NO_TPA_FROM_PLAYER, ChatFormatting.GOLD, nameColored(from)));
         } else {

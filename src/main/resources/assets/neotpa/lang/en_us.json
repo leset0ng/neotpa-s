@@ -11,7 +11,6 @@
   "commands.neotpa.tpahere.already_sent": "You have already requested %s to teleport to you!",
   "commands.neotpa.tpaccept.success_from": "%s has accepted your teleportation request!",
   "commands.neotpa.tpaccept.success_to": "You have accepted %s's teleportation request!",
-  "commands.neotpa.tpaccept.failure_dimension": "Could not accept the request because %s is not in the same dimension as you!",
   "commands.neotpa.tpaccept.failure_no_tpa": "You do not have any incoming teleportation requests!",
   "commands.neotpa.tpaccept.failure_no_tpa_from_player": "You do not have any incoming teleportation requests from %s!",
   "commands.neotpa.tpdeny.success_from": "%s has denied your teleportation request!",

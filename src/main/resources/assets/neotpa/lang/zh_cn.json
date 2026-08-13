@@ -11,7 +11,6 @@
   "commands.neotpa.tpahere.already_sent": "你已请求 %s 传送到你身边！",
   "commands.neotpa.tpaccept.success_from": "%s 已接受你的传送请求！",
   "commands.neotpa.tpaccept.success_to": "你已接受 %s 的传送请求！",
-  "commands.neotpa.tpaccept.failure_dimension": "无法接受请求：%s 与你不在同一维度！",
   "commands.neotpa.tpaccept.failure_no_tpa": "你没有任何收到的传送请求！",
   "commands.neotpa.tpaccept.failure_no_tpa_from_player": "你没有收到来自 %s 的传送请求！",
   "commands.neotpa.tpdeny.success_from": "%s 已拒绝你的传送请求！",

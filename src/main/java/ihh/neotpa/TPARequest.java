@@ -28,7 +28,7 @@ public abstract sealed class TPARequest permits TPARequest.Normal, TPARequest.He
 
         @Override
         public void execute() {
-            getSender().teleportTo(getReceiver().getX(), getReceiver().getY(), getReceiver().getZ());
+            teleportTo(getSender(), getReceiver());
         }
     }
 
@@ -39,7 +39,11 @@ public abstract sealed class TPARequest permits TPARequest.Normal, TPARequest.He
 
         @Override
         public void execute() {
-            getReceiver().teleportTo(getSender().getX(), getSender().getY(), getSender().getZ());
+            teleportTo(getReceiver(), getSender());
         }
+    }
+
+    private static void teleportTo(ServerPlayer player, ServerPlayer destination) {
+        player.teleportTo(destination.serverLevel(), destination.getX(), destination.getY(), destination.getZ(), player.getYRot(), player.getXRot());
     }
 }
